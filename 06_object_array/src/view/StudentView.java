@@ -366,6 +366,40 @@ public class StudentView {
 	private void deleteStudent() {
 		System.out.println("\n----- 학생 삭제(index) -----\n");
 		
+		// 인덱스를 입력 받아 검사
+		System.out.print("삭제할 학생 인덱스 번호 입력 : ");
+		int index = sc.nextInt();
+		
+		// 인덱스 범위, 학생 참조 여부 확인 메서드 호출
+		int check = service.checkIndex(index);
+		
+		if(check == 1) {
+			System.out.println("인덱스 범위가 올바르지 않습니다");
+			return;
+		}
+		
+		if(check == 2) {
+			System.out.println("해당 인덱스에 학생이 존재하지 않습니다");
+			return;
+		}
+		
+		
+		// Y/N 입력
+		System.out.print("정말 삭제 하시겠습니까? (Y/N) : ");
+
+//		char confirm = sc.next().charAt(0); // char 형태로 반환
+//		if(confirm == 'N') {}
+		
+		String confirm = sc.next(); // String 비교
+		if(confirm.equals("N")) {
+			System.out.println("취소 되었습니다.");
+			return;
+		}
+		
+		// 'Y'인 경우
+		// 삭제 서비스 호출
+		String studentName = service.deleteStudent(index);
+		System.out.println(studentName + " 학생이 삭제 되었습니다.");
 		
 	}
 	

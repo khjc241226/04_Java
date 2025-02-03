@@ -242,9 +242,28 @@ public class StudentService {
 		return result; 
 	}
 	
-	
-	
-	
+	/** index번째 학생 삭제 후 요소 한 칸씩 당기기
+	 * @param index : 삭제할 index 번호
+	 * @return 삭제된 학생 이름
+	 */
+	public String deleteStudent(int index) {
+		
+		// 삭제될 학생의 이름 (삭제 전 이름만 백업)
+		String studentName = students[index].getName();
+		
+//	1) students배열에서 입력 받은 index 번째 요소를 null로 바꿈
+		students[index] = null;
+		
+//	2) 삭제된 index 뒤에 요소를 하나씩 당겨오기
+		for(int i = index ; i < students.length - 1 ; i++) {
+			students[i] = students[i+1];
+		}
+		
+		// 마지막 index에 null 대입(제일 끝을 비워 둠)
+		students[students.length - 1] = null;
+		
+		return studentName;
+	}
 	
 	
 }

@@ -193,6 +193,55 @@ public class StudentService {
 	}
 	
 	
+	/** students 배열에서 점수 평균 최고, 최저 학생 찾기
+	 * @return result(문자열)
+	 */
+	public String selectMaxMin() {
+		
+		// 점수 평균 최고, 최저 학생의 이름/평균 저장할 변수 선언
+		String maxName = null;
+		double maxAvg  = 0.0;
+		
+		String minName = null;
+		double minAvg  = 100.0;
+		
+		for(StudentDTO std : students) { // 향상된 for문
+			
+			if(std == null) { // 더 이상 참조할 학생이 없을 경우
+				break;
+			}
+			
+			// 현재 접근 중인 학생(std)의 평균 구하기
+			int sum 
+				= std.getHtml() + std.getCss() + std.getJs() + std.getJava();
+			
+			double avg = sum / 4.0;
+			
+			
+			// 저장된 최고, 최저점과 avg 비교
+			if(avg > maxAvg) {
+				maxAvg = avg;
+				maxName = std.getName();
+			}
+			
+			if(avg < minAvg) {
+				minAvg = avg;
+				minName = std.getName();
+			}
+		}
+		
+		// 최고점 : 유리(85.4)
+		// 최저점 : 짱구(31.6)
+		String result 
+			= String.format(
+				  "최고점 : %s(%.1f)\n"
+				+ "최저점 : %s(%.1f)", 
+				maxName, maxAvg,
+				minName, minAvg);
+		
+		return result; 
+	}
+	
 	
 	
 	

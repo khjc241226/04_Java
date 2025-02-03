@@ -17,7 +17,6 @@ public class StudentRun {
 		// -> mainMenu()가 종료되면
 		// new StudentView() 로 만들어진 객체가 사라짐
 		// (왜? 참조하는 변수가 없어서 GC가 없애버림)
-		
 	}
-	
 }
+

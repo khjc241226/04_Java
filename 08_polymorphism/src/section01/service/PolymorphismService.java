@@ -181,6 +181,81 @@ public class PolymorphismService {
 	
 	
 	
+	/* [객체 배열의 다형성]
+	 * - 부모 타입의 참조 변수를 묶음으로 다루어서
+	 *  배열 각 요소에 업캐스팅 적용
+	 * 
+	 * * 객체 배열 : 객체 참조 변수의 묶음 
+	 */
+	
+	// 객체 배열의 다형성 확인
+	public void test4() {
+		
+		// Object 객체 참조 변수 5칸 짜리 배열 생성해서
+		// Object[] 참조 변수 arr에 배열 주소 대입
+		Object[] arr = new Object[5];
+		
+		
+		for(int i=0 ; i < arr.length ; i++) {
+			arr[i] =  getInstance(i % 3 + 1);
+			// i     : 0 1 2 3 4
+			// i%3+1 : 1 2 3 1 2
+
+			// 0,3번 : Child
+			// 1,4번 : Parent
+			// 2     : Object
+		}
+		
+		System.out.println("---------------------------------");
+		
+		
+		// 객체 배열의 다형성 + 동적 바인딩
+		
+		// * 동적 바인딩
+		// - 실행 중 메서드 호출부 연결이 실제 참조하는 객체의
+		//   오버라이딩된 메서드로 연결
+		//   (오버라이딩된 메서드가 우선권을 갖는다)
+		
+		for(Object obj : arr) { // 향상된 for문
+			// 실제 참조 중인 객체의 toString()이 호출됨 
+			System.out.println(obj.toString());
+		}
+		
+		System.out.println("--------------------------------");
+		System.out.println("[동적 바인딩이 없었더라면...]");
+		
+		for(Object obj : arr) { // 향상된 for문
+			
+			// 참조 객체 타입 검사 후 다운 캐스팅
+			if(obj instanceof Child) {
+				System.out.println( ((Child)obj).toString() );
+			}
+			
+			else if(obj instanceof Parent) {
+				System.out.println( ((Parent)obj).toString() );
+			}
+			
+			else {
+				System.out.println( obj.toString() );
+			}
+			
+		}
+		
+		
+		
+		
+		
+		/* debug 모드
+		 * - 이클립스 등 IDE에서 제공하는 기능
+		 * - 코드 수행 중 지정된 지점(breakpoint)에서 
+		 *   실행을 멈추고
+		 *   해당 시점에 존재하는 변수/필드 값을 확인하는 모드
+		 */
+		
+		
+	}
+	
+	
 	
 	
 	

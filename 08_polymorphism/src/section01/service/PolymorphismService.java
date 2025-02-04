@@ -86,8 +86,101 @@ public class PolymorphismService {
 		printObject(obj);    // 같은 Object 타입 전달 가능
 		printObject(parent); // Object의 자식 타입인 Parent 전달 가능
 		printObject(child);  // Object의 후손 타입인 Child 전달 가능
+	}
+	
+	
+	
+	/* [반환형의 다형성]
+	 * - 메서드의 반환형을 부모 타입을 설정하여
+	 *   return되는 자식 객체의 주소를 참조할 수 있게 함
+	 *   
+	 * - 다형성의 업캐스팅 적용
+	 */
+	
+	/**
+	 * 전달 받은 num 값에 따라 알맞은 객체를 생성/반환하는 메서드
+	 * @param num : 1 - Child, 2 - Parent , 나머지 - Object
+	 * @return 생성된 객체 참조 주소 반환
+	 */
+	public Object getInstance(int num) {
+		
+		// if, for, while의
+		// {} 내부 코드가 한 줄인 경우 {} 생략 가능
+		if(num == 1) return new Child();
+		
+		if(num == 2) return new Parent();
+		
+		return new Object();
+	}
+	
+	
+	// 반환형의 다형성 확인
+	public void test2() {
+		
+		// getInstance()의 반환형의 Object 
+		
+		// o1, o2는 업캐스팅 상태
+		Object o1 = getInstance(1); // Child 객체 반환
+		Object o2 = getInstance(2); // Parent 객체 반환
+		Object o3 = getInstance(3); // Object 객체 반환
+		
+		// 매개변수의 다형성 + 반환형의 다형성
+		printObject(o1);
+		printObject(o2);
+		printObject(o3);
+		
 		
 	}
+	
+	
+	
+	
+	
+	/* [바인딩(Binding)]
+	 * - 메서드 호출부와 실제 실행할 메서드 코드를 연결하는 것
+	 * 
+	 * [정적 바인딩]
+	 * - 프로그램 실행 전
+	 *  컴파일 단계에서 메서드와 메서드 호출부를 연결
+	 * 
+	 * [동적 바인딩]
+	 * - 프로그램 실행 중(Runtime)
+	 *  정적 바인딩된 메서드를
+	 *  실제 객체 타입을 기준으로 연결
+	 * 
+	 * - 왜 사용?
+	 *  1) 다운 캐스팅의 번거로움을 없앰
+	 *  2) 재정의된 메서드(조금 더 효율적 또는 알맞는 기능) 수행
+	 * 
+	 * * 상속, 오버라이딩, 업캐스팅(+메모리 구조)
+	 */
+	
+	// 바인딩 확인
+	public void test3() {
+		
+		Parent p1 = new Parent("김", 10); // 부모 = 부모
+		Child c1  = new Child("최", 20, "캐스퍼"); // 자식 = 자식
+		
+		Parent p2 = new Child("박", 30, "포터"); // 부모 = 자식(업캐스팅)
+		
+		
+		// 정적 바인딩 : 프로그램 실행 X, 컴파일 단계에서 연결
+		
+		// (정적)section01.dto.Parent.toString()
+		// (동적)section01.dto.Parent.toString()
+		System.out.println("p1.toString() : " + p1.toString());
+		
+		// (정적)section01.dto.Child.toString()
+		// (동적)section01.dto.Child.toString()
+		System.out.println("c1.toString() : " + c1.toString());
+		
+		// (정적)section01.dto.Parent.toString()
+		// (동적)section01.dto.Child.toString()  <- 바인딩이 변경됨
+		System.out.println("p2.toString() : " + p2.toString());
+	}
+	
+	
+	
 	
 	
 	

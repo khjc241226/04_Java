@@ -2,6 +2,11 @@ package section02.dto;
 
 public class Snake extends Animal{
 
+	// 생성자
+	public Snake(String type) {
+		super(type);
+	}
+
 	@Override
 	public void move() {
 		System.out.println("뱀 : S자로 슬금슬금 기어다님");

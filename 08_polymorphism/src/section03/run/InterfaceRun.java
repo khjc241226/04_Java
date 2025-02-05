@@ -2,6 +2,7 @@ package section03.run;
 
 import section03.dto.BDHCalculator;
 import section03.dto.BDHCalculator2;
+import section03.dto.CYSCalculator2;
 import section03.dto.Calculator;
 
 public class InterfaceRun {
@@ -21,8 +22,8 @@ public class InterfaceRun {
 		 *    새 객체의 기능을 모두 호출 가능
 		 *    -> 유지 보수성 향상!!
 		 */
-		Calculator calc = new BDHCalculator2();
-		
+//		Calculator calc = new BDHCalculator2();
+		Calculator calc = new CYSCalculator2();
 		
 		System.out.println( calc.plus(1234, 5678) );
 		System.out.println( calc.minus(1000000000, 999999999) );

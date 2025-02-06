@@ -125,11 +125,4 @@ public class Book {
 //		return result;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 }

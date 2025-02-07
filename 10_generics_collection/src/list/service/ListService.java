@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import generics.Child;
+import generics.Parent;
+
 public class ListService {
 
 	/* [Collection Framework]
@@ -195,9 +198,45 @@ public class ListService {
 		long end = System.currentTimeMillis();
 		
 		System.out.println("걸린 시간 : " + (end - start) + "ms" );
+	}
+	
+	
+	
+	public void test4() {
+		
+		// 부모 타입만 저장할 수 있는 List 생성
+		List<Parent> list1 = new ArrayList<Parent>();
+		list1.add(new Parent());
+		
+		// 자식 타입만 저장할 수 있는 List 생성
+		List<Child> list2 = new ArrayList<Child>();
+		list2.add(new Child(1));
+		list2.add(new Child(2));
+		list2.add(new Child(3));
+		
+		
+		// list1, list2 하나로 합치기
+		List<Parent> list3 = new ArrayList<Parent>();
+		
+		// boolean addAll(Collection<? extends E> c)
+		// - Collection 상속 객체(List, Set)를
+		//   현재 List의 제일 뒤에 추가
+		// - E : 현재 List에 제한된 타입 == Parent
+		// - ? : Parent 또는 Child
+		
+		list3.addAll(list1); // List<Parent>
+		list3.addAll(list2); // List<Child>
+		
+//		List<String> temp = new ArrayList<String>();
+//		list3.addAll(temp); // String은 Parent 상속 관계 X => 오류
+		
+		for(Parent p : list3) {
+			System.out.println(p); // p.toString();
+		}
 		
 		
 	}
+	
 	
 	
 	

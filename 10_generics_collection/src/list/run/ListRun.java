@@ -7,6 +7,7 @@ public class ListRun {
 		
 		ListService service = new ListService();
 		
-		service.test3();
+//		service.test3();
+		service.test4();
 	}
 }

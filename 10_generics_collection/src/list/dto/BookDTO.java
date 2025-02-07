@@ -2,7 +2,8 @@ package list.dto;
 
 import java.util.Objects;
 
-public class BookDTO {
+public class BookDTO implements Comparable<BookDTO> {
+	
 	private String title;  // 제목
 	private String author; // 저자
 	private int price;     // 가격
@@ -74,16 +75,14 @@ public class BookDTO {
 		return Objects.equals(author, other.author) && price == other.price && Objects.equals(publisher, other.publisher)
 				&& Objects.equals(title, other.title);
 	}
+
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// 기본 정렬 기준을 설정(제목 오름차순)
+	// -> Collections.sort() 호출 시 자동으로 이 메서드를 이용함
+	@Override
+	public int compareTo(BookDTO other) {
+		return this.title.compareTo(other.title);
+	}
 	
 	
 }

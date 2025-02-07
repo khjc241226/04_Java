@@ -1,0 +1,23 @@
+SOLID
+1. 단일 책임 원칙 (Single Responsibility Principle, SRP)
+-> 하나의 객체는 하나의 책임(역할)만 갖는다
+
+2. 개방-폐쇄 원칙 (Open/Closed Principle, OCP)
+-> 확장엔 개방, 수정엔 폐쇄
+ -> 기존 코드 수정X, 새 코드를 작성
+ -> 원래 잘 동작하던 코드를 유지하려고
+
+3. 리스코프 치환 원칙 (Liskov Substitution Principle, LSP)
+- 서브 타입은 언제나 기반 타입으로 교체할 수 있도록 해야한다 
+ -> 자식 객체가 부모 객체(또는 부모 객체 상속)로 
+    교환 되어도 기존 코드에 문제가 없어야 한다
+
+4. 인터페이스 분리 원칙 (Interface Segregation Principle, ISP)
+- 인터페이스를 최대한 필요한 기능만 갖도록 작게 만들자
+ -> 자식이 불필요한 메서드를 상속하지 않도록 하기 위해서
+
+5. 의존 역전 원칙 (Dependency Inversion Principle, DIP)
+ - 결합도를 낮추고, 응집도를 높여서
+   유지보수의 유연성 확보(추상화)
+
+

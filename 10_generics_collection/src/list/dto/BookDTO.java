@@ -1,5 +1,7 @@
 package list.dto;
 
+import java.util.Objects;
+
 public class BookDTO {
 	private String title;  // 제목
 	private String author; // 저자
@@ -52,5 +54,36 @@ public class BookDTO {
 	public String toString() {
 		return "BookDTO [title=" + title + ", author=" + author + ", price=" + price + ", publisher=" + publisher + "]";
 	}
+
+	
+	//equals(), hashCode() 오버라이딩
+	@Override
+	public int hashCode() {
+		return Objects.hash(author, price, publisher, title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookDTO other = (BookDTO) obj;
+		return Objects.equals(author, other.author) && price == other.price && Objects.equals(publisher, other.publisher)
+				&& Objects.equals(title, other.title);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

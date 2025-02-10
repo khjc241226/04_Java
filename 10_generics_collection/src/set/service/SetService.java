@@ -1,9 +1,15 @@
 package set.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeSet;
 
 import set.dto.Person;
 
@@ -175,15 +181,106 @@ public class SetService {
 			System.out.println(snack);
 		}
 		
+		System.out.println("-----------------------------");
+
+		/* 향상된 for문 
+		 * - 배열, 컬렉션(List,Set)의 요소를 하나씩 순차 접근
+		 *  -> Iterable 인터페이스 구현체에 대한 반복 접근 제공
+		 * */
+		 for(String snack : snacks) {
+			 System.out.println(snack);
+		 }
+		 
+		 System.out.println("----------------------------");
+		
+		 /* Set -> List로 변환 */
+		 List<String> list = new ArrayList<String>(snacks);
+		 // -> snacks Set에 저장된 데이터를 이용해 ArrayList 생성
+		 
+		 for(int i=0 ; i<list.size() ; i++) {
+			 System.out.println(list.get(i));
+		 }
+	}
+	
+	/* TreeSet : 이진 트리 구조를 이용해 객체를 저장하는 Set
+	 *  -> 중복 제거 + 오름 차순 정렬
+	 * 
+	 * ** 선행 조건 **
+	 * 저장되는 객체가 Comparable 인터페이스를 상속 받아서 구현
+	 * -> add() 될 때 마다 자동으로 비교 -> 정렬을 진행
+	 */
+	public void test4() {
+		
+		// Set<String> set = new HashSet<String>();
+		
+		// 오름차순 정렬
+		Set<String> set = new TreeSet<String>();
+		
+		set.add("짱구");
+		set.add("유리");
+		set.add("철수");
+		set.add("훈이");
+		set.add("맹구");
+		set.add("짱구2호");
+		
+		System.out.println(set);
+		// HashSet : 순서 유지 X
 	}
 	
 	
+	// 로또 번호 6개(중복X, 오름차순 정렬)가 담긴 문자열 반환
+	public String getLottoNumber() {
+		
+		Random random = new Random();
+		
+		Set<Integer> lotto = new TreeSet<Integer>();
+		
+		while(lotto.size() < 6) { 
+			// 저장된 값이 6개 미만이면 반복
+			// == 저장된 값이 6개가 되면 반복 종료
+			lotto.add(random.nextInt(45) +1);
+		}
+//		System.out.println(lotto);
+		
+		return lotto.toString();
+		
+		// 기존 방법
+//		int[] lotto = new int[6];
+//		
+//		for(int i=0 ; i<lotto.length ; i++) {
+//			int num = random.nextInt(45) + 1; // 1 ~ 45 사이 난수
+//			lotto[i] = num;
+//			
+//			for(int x=0 ; x<i ; x++) {
+//				if(lotto[x] == num) {
+//					i--;
+//					break;
+//				}
+//			}
+//		}
+//
+//		Arrays.sort(lotto);// 정렬
+//		System.out.println(Arrays.toString(lotto));
+	
+	}
 	
 	
-	
-	
-	
-	
-	
+	/**
+	 * 로또 번호 생성기
+	 * - 입력된 수 만큼의 로또 번호 생성
+	 * - 마지막에 가격 총합 출력(1회당 1,000원)
+	 */
+	public void lottoNumberGenrator() {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("생성할 로또 번호 개수 입력 : ");
+		int count = sc.nextInt();
+		
+		for(int i=0 ; i<count ; i++) {
+			System.out.printf("[%d회] : %s\n", i+1, getLottoNumber());
+		}
+		
+		System.out.println("금액 : " + (count * 1000) + "원");
+	}
 	
 }

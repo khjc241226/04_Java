@@ -1,0 +1,31 @@
+null : 참조하는 객체가 없다
+
+비어있다 : 참조하는 객체는 있는데 
+           저장된 데이터가 없다
+
+""(빈칸) : 작성된 내용이 없는 문자열
+
+undefined : 정의되지 않음
+
+
+List<String> list1 = null;
+if(list1.isEmpty()){} // 올바른 코드? X
+ 
+-> 참조하는 객체가 없음
+  -> NullPointerException 발생
+
+-----------------------------------------------
+
+List<String> list2 = new ArrayList<String>();
+
+if(list2 == null){}   // 실행 X
+if(list2.isEmpty()){} // 실행 O
+
+
+
+
+
+
+
+
+

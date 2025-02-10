@@ -7,6 +7,6 @@ public class TryCatchRun {
 		
 		TryCatchService service = new TryCatchService();
 		
-		service.test5();
+		service.test6();
 	}
 }

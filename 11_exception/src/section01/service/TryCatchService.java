@@ -224,20 +224,54 @@ public class TryCatchService {
 				System.out.println("나머지 모든 예외 잡아서 처리");
 			}
 			
-			
-			
-			
-			
-			
 		}while(input != 0);
 		
 		System.out.println("--- 프로그램 정상 종료 ---");
-		
-		
-		
-		
 	}
 	
+	
+	/* finally{} 
+	 * - 뜻 : 마침내, 마지막으로
+	 * - try 구문에서 예외 발생 여부 관계 없이
+	 *   마지막에 무조건 실행되어야 하는 코드를 작성하는 구문
+	 *   
+	 * - 중간에 프로그램이 종료되거나 메서드 리턴되어도 무조건 실행
+	 * 
+	 * - 외부 프로그램/장치와의 연결을 끊어낼 때 주로 사용!
+	 * 
+	 */
+	public void test6() {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		try {
+			System.out.print("1. 정상수행 / 2. 예외 강제 발생 : ");
+			int input = sc.nextInt();
+			
+			if(input == 1) System.out.println("예외 없이 정상 수행");
+			else {
+				System.out.println("[예외 강제 발생]");
+				throw new Exception("강제로 던져진 예외");
+			}
+			
+//			System.out.println("<<< 프로그램 종료 >>>");
+			
+		}catch (Exception e) {
+			// 예외 객체 참조 변수 e
+			// - 예외와 관련된 기능 제공
+			
+			    /* 에러 출력 */
+			System.err.println(e.getMessage());
+			// 예외가 던져질 때 담긴 메시지 얻어오기
+			
+			return; // 메서드를 종료하고 호출한 곳으로 돌아가라!
+		
+		} finally {
+			// try에서 예외 발생 여부 관계 없이 무조건 수행
+			System.out.println("<<< 프로그램 종료 >>>");
+			sc.close(); // 키보드와 연결에 사용된 자원 반환
+		}
+	}
 	
 	
 	

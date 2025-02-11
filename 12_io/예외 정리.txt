@@ -1,0 +1,18 @@
+- 오버라이딩 시 throws 구문 작성 방법
+ 1) 같거나 좁은 범위(세세한, 구체적인 예외)
+ 2) throws 제거 가능(예외 발생 안하는 코드로 재정의)
+ 
+- 사용자 정의 예외
+ 사용자가 필요한 예외 클래스 만들 수 있음
+
+- 사용자 정의 예외 생성 방법 
+ -> 아무 Exception 클래스 상속
+
+ 1) Checked Exception   - RuntimeException 빼고 나머지 상속
+ 2) Unchecked Exception - RuntimeException 또는 자식 상속
+
+
+
+
+
+

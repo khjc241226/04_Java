@@ -7,6 +7,14 @@ public class ByteRun {
 		
 		ByteService service = new ByteService();
 		
-		service.fileByteOutput(); // 파일 출력
+//		service.fileByteOutput(); // 파일 출력
+//		service.bufferedFileByteOutput(); // 버퍼 파일 출력
+		
+//		service.fileByteInput(); // 파일 입력(한글 깨짐)
+//		service.fileByteInput2(); // 파일 입력(한글 안깨짐)
+//		service.bufferedFileByteInput(); // 버퍼 파일 입력
+		service.fileCopy();
+		
+		
 	}
 }

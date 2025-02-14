@@ -42,7 +42,9 @@ public class MemberDAOImpl implements MemberDAO{
                 // 저장된 객체를 파일에서 읽어와 다운 캐스팅하여 memberList가 참조하게함
                 memberList = (ArrayList<Member>)ois.readObject();
 
-            } finally {
+            } 
+            
+            finally {
                 // try에서 발생하는 예외를
                 // 메서드 선언부에서 throws 처리하면
                 // catch() 구문을 작성하지 않아도 된다!!
@@ -69,12 +71,15 @@ public class MemberDAOImpl implements MemberDAO{
     // 추가, 수정 삭제 기능이 수행되면
     // 무조건 saveFile() 수행!
     //********************************
-
     
     // 회원 추가
     @Override
     public boolean addMember(Member member) throws IOException {
-
+    	
+    		memberList.add(member); // 전달 받은 Member를 memberList에 추가
+    		
+    		saveFile(); // memberList를 파일로 저장
+    	
         return true;
     }
 
@@ -83,11 +88,12 @@ public class MemberDAOImpl implements MemberDAO{
     @Override
     public void saveFile() throws IOException {
     	//  memberList를 MemberList.bin 파일로 출력
+    	try {
+  			oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME));
+  			oos.writeObject(memberList);
+  		} finally {
+  			if(oos != null) oos.close(); // flush() + 메모리 반환
+  		}
     }
-
-
-
-
-
 
 }
